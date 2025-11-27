@@ -1,0 +1,259 @@
+Build a complete, production-ready full-stack web application called Kwara Billboard Analytics Portal. It must be fully functional, not placeholder or dummy. Use real architectures, real code, real components, and real Supabase integration. The goal is to create a system for the Kwara State Signage Agency that:
+
+Counts the number of people passing in front of a billboard (via uploaded videos using an AI model).
+
+Provides an admin portal to manage billboard locations and view analytics.
+
+Provides a public portal for citizens/advertisers to view available billboard locations and traffic data.
+
+📌 TECH STACK REQUIREMENTS
+
+Use the following stack:
+
+Frontend: React + Vite + TailwindCSS
+
+Backend: Node.js (Express)
+
+Database + Auth: Supabase
+
+AI Processing: Python service using Ultralytics YOLOv8 or YOLOv11 for people detection
+
+Hosting: Entire project must be deployable on Render, including backend, frontend, and AI microservice
+
+Storage: Supabase storage for storing uploaded videos
+
+Map: LeafletJS (OpenStreetMap)
+
+Charting: Chart.js or Recharts
+
+Branding: Use Kwara State Government Logo (placeholder local file, not dummy), favicon, official Kwara green (#0AA344)
+
+🚀 FEATURES TO BUILD
+1️⃣ PUBLIC PORTAL (NO LOGIN)
+
+Path: /
+
+Hero section with a slideshow of Kwara State landmarks
+
+Map of all billboards (locations loaded from database)
+
+Each billboard should show:
+
+Name
+
+Photo
+
+Coordinates
+
+Size
+
+Status: available / occupied
+
+Estimated foot traffic (daily, weekly, monthly)
+
+Button: “Request This Billboard”
+
+A contact form that saves to Supabase (table: requests)
+
+2️⃣ ADMIN PORTAL (LOGIN REQUIRED)
+
+Path: /admin
+
+Authentication using Supabase email/password.
+
+Admin can:
+
+Add/edit/delete billboard locations
+
+Upload billboard images
+
+Upload CCTV or phone videos for analysis
+
+Trigger AI detection endpoint
+
+View analytics dashboards:
+
+People count from each video
+
+Trend charts
+
+Total daily views
+
+Weekly/monthly comparisons
+
+Export analytics as CSV
+
+See booking requests from public users
+
+Admin Dashboard UI:
+
+Sidebar navigation
+
+Charts
+
+Table of all billboards
+
+Table of all analytics results
+
+Kwara State logo on top-left
+
+Favicon included
+
+Modern UI with TailwindCSS
+
+🧠 AI VIDEO PROCESSING SERVICE
+
+Create a separate folder /ai-service containing:
+
+Python FastAPI server
+
+Endpoint: /analyze
+
+Accepts video URL from Supabase storage
+
+Downloads video
+
+Runs YOLOv8/YOLOv11 person detection
+
+Counts unique frames with people
+
+Returns:
+
+{
+  "total_people": 123,
+  "video_duration": "...",
+  "frames_processed": 1000
+}
+
+
+Save result to Supabase table analytics
+
+This service must be deployable as a separate Render service.
+
+🗂️ DATABASE SCHEMA (Supabase)
+
+Create these tables:
+
+billboards
+
+id (uuid)
+
+name
+
+latitude
+
+longitude
+
+size
+
+image_url
+
+status (available / occupied)
+
+daily_estimated_views (int)
+
+videos
+
+id
+
+billboard_id
+
+video_url
+
+created_at
+
+analytics
+
+id
+
+billboard_id
+
+video_id
+
+total_people
+
+processed_at
+
+requests
+
+id
+
+billboard_id
+
+name
+
+email
+
+phone
+
+message
+
+submitted_at
+
+🔧 BACKEND API (Node.js Express)
+
+REST API endpoints:
+
+POST /api/billboards (create)
+
+GET /api/billboards
+
+PATCH /api/billboards/:id
+
+DELETE /api/billboards/:id
+
+POST /api/upload-video
+
+Saves video to Supabase storage
+
+Sends video URL to AI service
+
+Saves analytics to database
+
+GET /api/analytics/:billboard_id
+
+Returns all analytics for charts
+
+POST /api/request
+
+Save billboard booking request
+
+Make everything production-ready and tested.
+
+🎨 UI/UX REQUIREMENTS
+
+Use responsive design
+
+Use Kwara State official green (#0AA344) as primary color
+
+Use the Kwara State logo on navbar
+
+Include a favicon
+
+Professional government look
+
+Smooth animations
+
+Clean fonts (Inter or Poppins)
+
+🏁 DEPLOYMENT REQUIREMENTS
+
+Produce a full project with:
+
+/frontend → React app
+
+/backend → Node Express API
+
+/ai-service → Python FastAPI AI server
+
+Add render.yaml or deployment instructions
+
+All environment variables must be loaded from .env
+
+No placeholder code. Everything must be real and working.
+
+Use production-ready security and file structure.
+
+📦 DELIVERABLE
+
+Generate the entire project source code, with real functional integration, no placeholders, ready to be pushed to GitHub and deployed on Render.
