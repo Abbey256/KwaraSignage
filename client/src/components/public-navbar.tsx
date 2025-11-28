@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { MapPin, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useState } from "react";
@@ -19,9 +19,11 @@ export function PublicNavbar() {
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 lg:px-8">
         <Link href="/" className="flex items-center gap-2">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary">
-            <MapPin className="h-6 w-6 text-primary-foreground" />
-          </div>
+          <img 
+            src="/kwara-logo.png" 
+            alt="Kwara State Government Logo" 
+            className="h-10 w-10 object-contain"
+          />
           <div className="flex flex-col">
             <span className="text-lg font-bold tracking-tight text-foreground">KWARA</span>
             <span className="text-[10px] font-medium uppercase tracking-widest text-muted-foreground">
